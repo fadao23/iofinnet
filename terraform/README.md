@@ -24,14 +24,6 @@ To select to workspace where we want to deploy :
 
     terraform workspace select dev
 
-Here the commands to create the envs : 
-
-    terraform init
-
-    terraform plan
-
-    terraform apply
-
 There the commands to be able to run the project.
 
     terraform init
