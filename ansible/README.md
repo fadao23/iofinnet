@@ -16,7 +16,7 @@ This project has been developed in MAC OS env and deployed on EC2 unbuntu VM. An
 |   |   |    | -- hosts 
 |   |   | -- staging
 |   |   |    | -- group_vars
-|   |   |    |    | -- dev.yml
+|   |   |    |    | -- staging.yml
 |   |   |    | -- hosts 
 |   |-- roles
 |   |   |-- app
