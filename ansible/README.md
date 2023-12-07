@@ -9,6 +9,15 @@ This project has been developed in MAC OS env and deployed on EC2 unbuntu VM. An
 ```
 /project-directory
 |-- ansible
+|   | -- environments
+|   |   | -- dev
+|   |   |    | -- group_vars
+|   |   |    |    | -- dev.yml
+|   |   |    | -- hosts 
+|   |   | -- staging
+|   |   |    | -- group_vars
+|   |   |    |    | -- dev.yml
+|   |   |    | -- hosts 
 |   |-- roles
 |   |   |-- app
 |   |   |   |-- templates
@@ -16,10 +25,13 @@ This project has been developed in MAC OS env and deployed on EC2 unbuntu VM. An
 |   |   |   |   |-- nginx.conf.j2
 |   |   |   |-- tasks
 |   |   |   |   |-- main.yml
-|   |   |-- common
-|   |       |-- tasks
-|   |           |-- main.yml
-|-- main.yml
+|   |   |-- docker
+|   |   |   |-- tasks
+|   |   |   |   |-- main.yml
+|   |   |   |-- handlers
+|   |   |   |   |-- main.yml
+|-- playbook.yml
+|-- README.MD
 ```
 
 ## Usage
