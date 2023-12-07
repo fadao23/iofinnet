@@ -22,7 +22,7 @@ services:
     expose:
       - "80"
     volumes:
-      - secret-keys-volume:/data
+      - secret-keys-volume:{{ docker_volume }}
 
   nginx:
     image: nginx:latest
