@@ -1,0 +1,29 @@
+---
+- name: Check Available Disk Space
+  ansible.builtin.assert:
+    that:
+      - "ansible_mounts[0].size_total | int > 5 * 1024 * 1024 * 1024"  # Ensure at least 5GB of total disk space
+    fail_msg: "Insufficient disk space on the host. At least 10GB required."
+
+- name: Create app directory for docker container
+  ansible.builtin.file:
+    path: /app
+    state: directory
+    mode: '0755'
+
+- name: Copy the nginx file to server
+  template:
+    src: nginx.conf.j2
+    dest: /etc/nginx.conf
+    mode: "0644"
+
+- name: Copy Docker Compose template
+  template:
+    src: docker-compose.yml.j2
+    dest: /app/docker-compose.yml
+    mode: "0644"
+
+- name: Run Docker Compose
+  ansible.builtin.shell: docker compose up -d
+  args:
+    chdir: /app

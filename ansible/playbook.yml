@@ -1,0 +1,21 @@
+---
+- name: Deploy App Instances
+  hosts: all
+  become: true
+  gather_facts: true
+
+  tasks:
+    - name: Install Docker and Docker Compose
+      include_role:
+        name: docker
+        tasks_from: main
+
+    - name: Check Available Disk Space
+      include_role:
+        name: app
+        tasks_from: main
+
+    - name: Configure and Deploy App
+      include_role:
+        name: app
+        tasks_from: main

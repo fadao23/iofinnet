@@ -1,0 +1,10 @@
+---
+docker_image: "nginx:latest"
+docker_port: "8181"
+docker_volume: "/data"
+tuning: "true"
+debug: false
+external_url: "https://staging/approve"
+client: "staging_client_external"
+interaction_mode: "API"
+device_id: 32443532

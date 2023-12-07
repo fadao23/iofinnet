@@ -1,0 +1,37 @@
+version: "3"
+services:
+  app_instance_{{ inventory_hostname_short }}:
+    image: "{{ docker_image }}"
+    deploy:
+      mode: replicated
+      replicas: 3
+      resources:
+        limits:
+          cpus: '0.30'
+          memory: 1gb
+        reservations:
+          cpus: '0.30'
+          memory: 1gb
+    environment:
+      TUNING: "{{ tuning }}"
+      DEBUG: "{{ debug }}"
+      EXTERNAL_URL: "{{ external_url }}"
+      CLIENT: "{{ client }}"
+      INTERACTION_MODE: "{{ interaction_mode }}"
+      DEVICE_ID: "{{ device_id }}"
+    expose:
+      - "80"
+    volumes:
+      - secret-keys-volume:/data
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - "{{ docker_port }}:80"  # Map host port 8181 to Nginx container's port 80
+    volumes:
+      - ./nginx.conf:/etc/nginx.conf:ro
+    depends_on:
+      - app_instance_{{ inventory_hostname_short }}
+
+volumes:
+  secret-keys-volume:

@@ -1,0 +1,10 @@
+---
+docker_image: "nginx:latest"
+docker_port: "8181"
+docker_volume: "/data"
+tuning: "true"
+debug: true
+external_url: "https://dev/approve"
+client: "dev_client_external"
+interaction_mode: "API"
+device_id: 2346456

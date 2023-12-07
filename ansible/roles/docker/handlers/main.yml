@@ -1,0 +1,6 @@
+---
+- name: Start and enable docker daemon
+  ansible.builtin.service:
+    name: docker
+    state: started
+    enabled: true

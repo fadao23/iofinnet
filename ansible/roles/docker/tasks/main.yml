@@ -1,0 +1,14 @@
+---
+- name: ensure packages are up-to-date
+  ansible.builtin.apt:
+    name: "*"
+    state: latest
+  become: true
+
+- name: install pip3
+  apt:
+    name:
+      - python3-pip
+
+- name: Install Docker Compose
+  command: "pip3 install docker-compose"
