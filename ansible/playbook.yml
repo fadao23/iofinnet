@@ -10,11 +10,6 @@
         name: docker
         tasks_from: main
 
-    - name: Check Available Disk Space
-      include_role:
-        name: app
-        tasks_from: main
-
     - name: Configure and Deploy App
       include_role:
         name: app

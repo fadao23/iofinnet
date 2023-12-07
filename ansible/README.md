@@ -28,8 +28,6 @@ This project has been developed in MAC OS env and deployed on EC2 unbuntu VM. An
 |   |   |-- docker
 |   |   |   |-- tasks
 |   |   |   |   |-- main.yml
-|   |   |   |-- handlers
-|   |   |   |   |-- main.yml
 |-- playbook.yml
 |-- README.MD
 ```

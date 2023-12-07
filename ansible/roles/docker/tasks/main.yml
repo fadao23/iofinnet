@@ -1,9 +1,32 @@
 ---
-- name: ensure packages are up-to-date
+- name: Verify if packages are up-to-date
   ansible.builtin.apt:
     name: "*"
     state: latest
   become: true
+
+- name: Update repositories cache and install dependencies packages
+  ansible.builtin.apt:
+    name: "{{ item }}"
+    update_cache: true
+  with_items:
+    - 'ca-certificates'
+    - 'curl'
+    - 'gnupg'
+
+- name: Adding Docker official GPG key
+  ansible.builtin.shell: curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --batch --yes --dearmor -o /etc/apt/keyrings/docker.gpg
+
+- name: Adding Docker Repo
+  ansible.builtin.shell: echo "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+- name: Install docker packages
+  ansible.builtin.apt:
+    name: "{{ item }}"
+    update_cache: true
+  with_items:
+    - 'docker-ce'
+    - 'docker-ce-cli'
 
 - name: install pip3
   apt:
