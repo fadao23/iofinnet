@@ -12,6 +12,26 @@ This project can works without setting variables as input, on the file variables
 
 ## Run the project
 
+This project use terraform workspace to manage the environments. You need to create the envs, by default, terraform will use the "default" workspace.
+
+    terraform workspace new dev
+
+    terraform workspace new staging
+
+    terraform workspace new prod
+
+To select to workspace where we want to deploy :
+
+    terraform workspace select dev
+
+Here the commands to create the envs : 
+
+    terraform init
+
+    terraform plan
+
+    terraform apply
+
 There the commands to be able to run the project.
 
     terraform init
